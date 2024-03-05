@@ -1,16 +1,21 @@
 import {
   createUserWithEmailAndPassword,
+  updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./Firebase";
 
-export const signup = async (email, password) => {
+export const signup = async (email, password, name) => {
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Signup successful:", result);
-    if (createUserWithEmailAndPassword) {
-      alert("Signup Succesfull");
-    }
+    const user = result.user;
+    console.log(name)
+    await updateProfile(auth.currentUser, { displayName: name });
+
+    // You can do further processing if needed
+    console.log("User signed up successfully with name:", name);
+   
     return result;
   } catch (error) {
     console.error("Signup error:", error);
@@ -22,9 +27,7 @@ export const signin = async (email, password) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     console.log("Signin successful:", result);
-    if (signInWithEmailAndPassword) {
-      alert("Login Succesfull");
-    }
+   
     return result;
   } catch (error) {
     console.error("Signin error:", error);

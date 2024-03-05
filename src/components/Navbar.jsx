@@ -1,7 +1,9 @@
 import { FaShopify } from "react-icons/fa";
-import Signup from "./Signup"
+import { auth } from "../Authentication/Firebase";
 
 const Navbar = () => {
+  const username = auth.currentUser.displayName;
+
   return (
     <>
       <div className=" flex justify-between bg-white border rounded-sm mx-auto items-center  sticky top-0 ">
@@ -18,12 +20,10 @@ const Navbar = () => {
         </div>
         <div className="flex mr-2">
           <button className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-105">
-            Login
+            Hii! {username}
           </button>
         </div>
-
       </div>
-      <Signup/>
     </>
   );
 };
