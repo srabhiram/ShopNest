@@ -1,4 +1,5 @@
 import { FaShopify } from "react-icons/fa";
+import Signup from "./Signup"
 
 const Navbar = () => {
   return (
@@ -20,7 +21,9 @@ const Navbar = () => {
             Login
           </button>
         </div>
+
       </div>
+      <Signup/>
     </>
   );
 };
