@@ -1,6 +1,7 @@
 import { signin, signup } from "../Authentication/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../Authentication/Firebase";
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ export const Signup = () => {
   const [error, setError] = useState("");
   const [name, setNAme] = useState("");
   console.log(name);
+  console.log(auth.currentUser);
 
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ export const Signup = () => {
       if (isLogin) {
         const result = await signin(email, password, name);
         if (result) {
-          navigate("/navbar");
+          navigate("/home");
         }
         // Handle successful login
       } else {
@@ -59,8 +61,8 @@ export const Signup = () => {
   return (
     <>
       <h2>{isLogin ? "" : ""}</h2>
-      <div className="flex items-center h-screen justify-center">
-        <div className="  grid grid-cols-1  rounded-xl shadow-2xl gap-3 items-start w-[23rem] h-max border p-7">
+      <div className="bg-black/70 flex items-center h-screen justify-center">
+        <div className=" bg-white  grid grid-cols-1  rounded-xl shadow-2xl gap-3 items-start w-[23rem] h-max border p-7">
           <div className="">
             <form onSubmit={handlesubmit} className="">
               <div>

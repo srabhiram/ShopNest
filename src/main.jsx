@@ -4,13 +4,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import "@radix-ui/themes/styles.css";
+import { Provider } from "react-redux";
+import store from "./services/store/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <div className="">
+    <Provider store={store}>
+      <BrowserRouter>
         <App />
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

@@ -1,8 +1,23 @@
 import { FaShopify } from "react-icons/fa";
 import { auth } from "../Authentication/Firebase";
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const username = auth.currentUser.displayName;
+  const navigate = useNavigate();
+  console.log(username);
+  console.log(auth);
+
+  const signout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        console.log("User signed out successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  };
 
   return (
     <>
@@ -19,7 +34,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex mr-2">
-          <button className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-105">
+          <button
+            onClick={() => {
+              signout();
+            }}
+            className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-105"
+          >
             Hii! {username}
           </button>
         </div>
