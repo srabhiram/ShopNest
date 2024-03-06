@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const username = auth.currentUser.displayName;
   const navigate = useNavigate();
-  console.log(username);
-  console.log(auth);
 
   const signout = () => {
     auth
@@ -33,12 +31,12 @@ const Navbar = () => {
             <li>Other</li>
           </ul>
         </div>
-        <div className="flex mr-2">
+        <div className="flex mx-2">
           <button
             onClick={() => {
               signout();
             }}
-            className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-105"
+            className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-110"
           >
             Hii! {username}
           </button>

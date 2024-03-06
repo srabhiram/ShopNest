@@ -6,7 +6,7 @@ import { FaCartPlus } from "react-icons/fa";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state?.allProducts);
+  const products = useSelector((state) => state?.allProducts) || [];
   console.log(products);
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -15,30 +15,33 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-
-      <div className="mx-3 grid grid-cols-4 h-max  items-center justify-center gap-8">
-        {products?.map(({ id, title, rating, description, image }) => (
+      <div className="grid grid-cols-4  align-baseline gap-3 m-12 p-4 bg-gray-50">
+        {products.map(({ title, id, image, rating, category }) => (
           <>
             <div
-              className="border border-gray-50 p-4 rounded-md shadow-xl"
+              className=" border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center justify-"
               key={id}
             >
-              <div className="flex items-center w-1/2 justify-center">
-                <img src={image} width={110} className="" alt="" />
+              <div className="p-2 items-center justify-center flex ">
+                <img src={image} alt="img" className="" width={95} />
               </div>
-              <div>
-                <strong>{title}</strong>
-                <span>{rating.rate}</span>
-                <div className="flex flex-row">
-                  <button className=" bg-black px-3 py-2 rounded-md hover:ease-in-out hover:scale-105 text-white m-3">
-                    Buy now
-                  </button>
-                  <button className="flex items-center gap-2  bg-black px-3 py-2 rounded-md hover:ease-in-out hover:scale-105 text-white m-3">
-                    Add to cart <FaCartPlus />
-                  </button>
-                </div>
+              <div className="">
+                <h1 className="font-bold text-xl text-slate-700">{title}</h1>
+                <span className="items-end flex">{rating.rate}</span>
+                <p>{category}</p>
+              </div>
+              <div className="mt-3 flex cursor-pointer items-center gap-12">
+                <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-500 hover:text-white hover:ease-in-out hover:scale-105">
+                  Buy now
+                </button>
+                <button className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-500 hover:text-white hover:ease-in-out hover:scale-105">
+                  Add to cart
+                  <FaCartPlus />
+                </button>
+              </div>
+              {/* <div className="text-gray-400  line-clamp-4 overflow-hidden  ">
                 <p>{description}</p>
-              </div>
+              </div> */}
             </div>
           </>
         ))}
