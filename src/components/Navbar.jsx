@@ -19,18 +19,18 @@ const Navbar = () => {
 
   return (
     <>
-      <div className=" flex justify-between bg-white/70 backdrop-blur-sm border rounded-sm mx-auto items-center  sticky top-0 ">
-        <div id="icon" className="p-2 flex items-center gap-2 text-2xl">
+      <div className=" flex w-full justify-between bg-white/70 backdrop-blur-sm border rounded-sm  items-center  sticky top-0 ">
+        <div id="icon" className="p-2 flex items-center gap-2 max-lg-text-2xl">
           <FaShopify size={44} />
           <strong>Shopify!</strong>
         </div>
-        <div className="flex  ">
-          <ul className="flex gap-4 items-center">
-            <li>Home</li>
-            <li>Products</li>
-            <li>Other</li>
-          </ul>
-        </div>
+
+        <ul className="flex gap-4 items-center max-sm:hidden">
+          <li>Home</li>
+          <li>Products</li>
+          <li>Other</li>
+        </ul>
+
         <div className="flex mx-2">
           <button
             onClick={() => {

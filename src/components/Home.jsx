@@ -15,7 +15,7 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-4  align-baseline gap-3 m-12 p-4 bg-gray-50">
+      <div className="grid max-lg-grid-cols-4 w-full  align-baseline gap-3 max-lg-m-12 p-4 bg-gray-50">
         {products.map(({ title, id, image, rating, category }) => (
           <>
             <div
@@ -31,10 +31,10 @@ export const Home = () => {
                 <p>{category}</p>
               </div>
               <div className="mt-3 flex cursor-pointer items-center gap-12">
-                <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-500 hover:text-white hover:ease-in-out hover:scale-105">
+                <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-800 hover:text-white hover:ease-in-out hover:scale-105">
                   Buy now
                 </button>
-                <button className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-500 hover:text-white hover:ease-in-out hover:scale-105">
+                <button className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-800 hover:text-white hover:ease-in-out hover:scale-105">
                   Add to cart
                   <FaCartPlus />
                 </button>
