@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className=" flex justify-between bg-white border rounded-sm mx-auto items-center  sticky top-0 ">
+      <div className=" flex justify-between bg-white/70 backdrop-blur-sm border rounded-sm mx-auto items-center  sticky top-0 ">
         <div id="icon" className="p-2 flex items-center gap-2 text-2xl">
           <FaShopify size={44} />
           <strong>Shopify!</strong>
