@@ -15,7 +15,7 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="grid max-lg-grid-cols-4 w-full  align-baseline gap-3 max-lg-m-12 p-4 bg-gray-50">
+      <div className="grid md:grid-cols-4 w-full  align-baseline gap-3 max-lg-m-12 p-4 bg-gray-50">
         {products.map(({ title, id, image, rating, category }) => (
           <>
             <div
