@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllProducts,
+  fetchCategory,
   fetchSingleProduct,
 } from "../services/store/actions";
 import Navbar from "./Navbar";
@@ -18,8 +19,9 @@ export const Home = () => {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
-  const ProductClick = (id) => {
+  const ProductClick = (id,category) => {
     dispatch(fetchSingleProduct(id));
+    dispatch(fetchCategory(category))
     navigate("/product");
   };
 
@@ -40,7 +42,7 @@ export const Home = () => {
                   className="cursor-pointer"
                   width={95}
                   onClick={() => {
-                    ProductClick(id);
+                    ProductClick(id,category);
                   }}
                 />
               </div>
@@ -48,7 +50,7 @@ export const Home = () => {
                 <h1
                   className="font-bold text-xl cursor-pointer text-slate-700"
                   onClick={() => {
-                    ProductClick(id);
+                    ProductClick(id,category);
                   }}
                 >
                   {title}

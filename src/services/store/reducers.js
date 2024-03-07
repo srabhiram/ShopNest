@@ -2,6 +2,7 @@ const initialState = {
   allProducts: null,
   error: null,
   singleProduct: null,
+  singleCategory: null,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -31,6 +32,19 @@ export const Reducer = (state = initialState, action) => {
         singleProduct: [],
         error: action.payload,
       };
+    case "FETCH_SINGLE_CATEGORY_SUCCESS":
+      return {
+        ...state,
+        singleCategory: action.payload,
+        error: [],
+      };
+    case "FETCH_SINGLE_CATEGORY_FAILURE":
+      return {
+        ...state,
+        singleCategory: [],
+        error: action.payload,
+      };
+
     default:
       return state;
   }

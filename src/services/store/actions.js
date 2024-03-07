@@ -40,3 +40,20 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
     });
   }
 };
+
+export const fetchCategory = (category) => async (dispatch) => {
+  try {
+    const singleCategory = await axios.get(
+      `https://fakestoreapi.com/products/category/${category}`
+    );
+    dispatch({
+      type: "FETCH_SINGLE_CATEGORY_SUCCESS",
+      payload: singleCategory.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "FETCH_SINGLE_CATEGORY_FAILURE",
+      payload: error.message,
+    });
+  }
+};
