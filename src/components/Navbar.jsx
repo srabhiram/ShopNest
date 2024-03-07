@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-0 flex w-full justify-between bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
+      <div className="z-50 flex w-full justify-between bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
         <div
           id="icon"
           className="p-2 flex items-center gap-2 max-lg-text-2xl cursor-pointer"

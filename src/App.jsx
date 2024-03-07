@@ -2,6 +2,7 @@ import Signup from "./components/Signup";
 import { Routes, Route } from "react-router-dom";
 import { auth } from "./Authentication/Firebase";
 import { Home } from "./components/Home";
+import { ProductDetails } from "./components/ProductDetails";
 
 function App() {
   console.log(auth.currentUser);
@@ -9,6 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Signup />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/product" element={<ProductDetails />} />
     </Routes>
   );
 }
