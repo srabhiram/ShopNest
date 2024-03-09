@@ -57,3 +57,26 @@ export const fetchCategory = (category) => async (dispatch) => {
     });
   }
 };
+export const addtocart = (id, image, title, price, rating) => async (dispatch, getState) => {
+  try {
+    // Create the new cart item
+    const newItem = { id, title, image, rating, price };
+
+    // Get the current cart data from the state
+    const currentCartData = getState().cartData;
+
+    // Merge the new item with the existing cart data
+    const updatedCartData = [...(currentCartData || []), newItem];
+
+    // Dispatch the updated cart data to the store
+    dispatch({
+      type: "ADD_TO_CART_SUCCESS",
+      payload: updatedCartData,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ADD_TO_CART_FAILURE",
+      payload: error.message,
+    });
+  }
+};

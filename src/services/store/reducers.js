@@ -3,6 +3,8 @@ const initialState = {
   error: null,
   singleProduct: null,
   singleCategory: null,
+  cartData: null,
+  updatedCartData:null,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -42,6 +44,18 @@ export const Reducer = (state = initialState, action) => {
       return {
         ...state,
         singleCategory: [],
+        error: action.payload,
+      };
+    case "ADD_TO_CART_SUCCESS":
+      return {
+        ...state,
+        cartData: action.payload,
+        error: [],
+      };
+    case "ADD_TO_CART_FAILURE":
+      return {
+        ...state,
+        cartData: [],
         error: action.payload,
       };
 

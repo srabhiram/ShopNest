@@ -1,12 +1,20 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 import { Fragment } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import SimilarCart from "./SimilarCart";
+import { addtocart } from "../services/store/actions";
+import { useNavigate } from "react-router-dom";
 
 export const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const productinfo = useSelector((state) => state?.singleProduct);
-  const { title, id, image, description, price } = productinfo || [];
+  const { title, id, image, description, price, rating } = productinfo || [];
+ export const handleCart = (id, title, image, rating, price) => {
+    dispatch(addtocart(id, title, image, rating, price));
+    navigate("/cart");
+  };
   return (
     <Fragment>
       <Navbar />
@@ -30,7 +38,12 @@ export const ProductDetails = () => {
                     <button className="border  max-sm:text-xl  max-sm:w-full border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 focus:bg-slate-800  hover:text-white focus:ease-in-out cursor-pointer focus:scale-105">
                       Buy now
                     </button>
-                    <button className="flex max-sm:w-full max-sm:text-xl max-sm:mt-1 justify-center items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white ">
+                    <button
+                      className="flex max-sm:w-full max-sm:text-xl max-sm:mt-1 justify-center items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white"
+                      onClick={() => {
+                        handleCart(id, title, image, rating, price);
+                      }}
+                    >
                       Add to cart
                       <FaCartPlus />
                     </button>
