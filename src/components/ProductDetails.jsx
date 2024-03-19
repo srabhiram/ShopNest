@@ -11,7 +11,7 @@ export const ProductDetails = () => {
   const navigate = useNavigate();
   const productinfo = useSelector((state) => state?.singleProduct);
   const { title, id, image, description, price, rating } = productinfo || [];
- export const handleCart = (id, title, image, rating, price) => {
+  const handleCart = (id, title, image, rating, price) => {
     dispatch(addtocart(id, title, image, rating, price));
     navigate("/cart");
   };

@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  
+  doc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,3 +27,29 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+const db = getFirestore(app);
+export const fetchCartData = async (userId) => {
+  try {
+    const cartDocRef = doc(db, "carts", userId);
+    const cartDocSnapshot = await getDoc(cartDocRef);
+    if (cartDocSnapshot.exists()) {
+      return cartDocSnapshot.data().cartData || [];
+    } else {
+      console.log("No cart data found for user:", userId);
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching cart data:", error);
+    return [];
+  }
+};
+
+export const updateCartData = async (userId, cartData) => {
+  try {
+    const cartDocRef = doc(db, "carts", userId);
+    await setDoc(cartDocRef, { cartData });
+    console.log("Cart data updated for user:", userId);
+  } catch (error) {
+    console.error("Error updating cart data:", error);
+  }
+};

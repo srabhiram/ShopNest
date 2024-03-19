@@ -1,4 +1,5 @@
 import axios from "axios";
+import { updateCartData } from "../../Authentication/Firebase";
 
 export const fetchAllProducts = () => async (dispatch) => {
   try {
@@ -57,7 +58,8 @@ export const fetchCategory = (category) => async (dispatch) => {
     });
   }
 };
-export const addtocart = (id, image, title, price, rating) => async (dispatch, getState) => {
+
+export const addtocart = (id, title, image, rating, price) => async (dispatch, getState) => {
   try {
     // Create the new cart item
     const newItem = { id, title, image, rating, price };
@@ -73,9 +75,45 @@ export const addtocart = (id, image, title, price, rating) => async (dispatch, g
       type: "ADD_TO_CART_SUCCESS",
       payload: updatedCartData,
     });
+
+    // Update cart data in Firestore
+    const userId = getState().auth.userId;
+    await updateCartData(userId, updatedCartData);
   } catch (error) {
     dispatch({
       type: "ADD_TO_CART_FAILURE",
+      payload: error.message,
+    });
+  }
+};
+
+export const removeCart = (id) => async (dispatch, getState) => {
+  try {
+    // Get the current cart data from the state
+    const currentCartData = getState().cartData;
+
+    // Find the index of the item with the specified ID
+    const indexToRemove = currentCartData.findIndex((item) => item.id === id);
+
+    if (indexToRemove !== -1) {
+      // Remove the item from the currentCartData array using splice
+      currentCartData.splice(indexToRemove, 1);
+
+      // Dispatch the updated cart data to the store
+      dispatch({
+        type: "REMOVE_CART_SUCCESS",
+        payload: [...currentCartData], // Ensure a new reference is created for the updated array
+      });
+
+      // Update cart data in Firestore
+      const userId = getState().auth.userId;
+      await updateCartData(userId, currentCartData);
+    } else {
+      console.log("Item with ID", id, "not found in cart.");
+    }
+  } catch (error) {
+    dispatch({
+      type: "REMOVE_CART_FAILURE",
       payload: error.message,
     });
   }

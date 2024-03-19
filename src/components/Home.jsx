@@ -8,7 +8,6 @@ import {
 import Navbar from "./Navbar";
 import { FaCartPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { handleCart } from "./CartDetails";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ export const Home = () => {
     <>
       <Navbar />
       <div className="grid md:grid-cols-4 w-full  align-baseline gap-6 max-lg-m-12 p-4 bg-gray-50">
-        {products?.map(({ title, id, image, rating, category,price }) => (
+        {products?.map(({ title, id, image, rating, category, price }) => (
           <>
             <div
               className="cursor-default transform transition-all duration-500 hover:scale-105 border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center "
@@ -63,12 +62,7 @@ export const Home = () => {
                 <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 focus:bg-slate-800  hover:text-white focus:ease-in-out cursor-pointer focus:scale-105">
                   Buy now
                 </button>
-                <button
-                  className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white focus:ease-in-out focus:scale-90 hover:ease-in-out hover:scale-110"
-                  onClick={() => {
-                    handleCart(id, title, image, rating, price);
-                  }}
-                >
+                <button className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white focus:ease-in-out focus:scale-90 hover:ease-in-out hover:scale-110">
                   Add to cart
                   <FaCartPlus />
                 </button>

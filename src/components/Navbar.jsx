@@ -1,11 +1,11 @@
 import { FaShopify, FaBars } from "react-icons/fa";
 import { auth } from "../Authentication/Firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const username = auth.currentUser.displayName;
+  const username = auth?.currentUser?.displayName;
   const navigate = useNavigate();
 
   const signout = () => {
@@ -33,7 +33,9 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
           />
           <FaShopify size={44} />
-          <strong>Shopify!</strong>
+          <strong>
+            <NavLink to="/home">Shopify!</NavLink>!
+          </strong>
         </div>
 
         <ul
