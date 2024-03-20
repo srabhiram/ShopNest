@@ -59,7 +59,7 @@ const Navbar = () => {
             <DropdownMenu.Trigger>
               <Button variant="soft">
                 Hii! {username}
-                <FaCaretDown />
+                <FaCaretDown  />
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="bg-white p-4 rounded-md border cursor-default shadow-md">
