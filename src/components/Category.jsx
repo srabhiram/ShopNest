@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
+import { useState } from "react";
+import { Home } from "./Home";
 
 export default function Category() {
+  const [cat, setcat] = useState(<Home />);
   const products = useSelector((state) => state?.allProducts?.products) || [];
   let category = [];
   let img = [];
@@ -31,6 +34,7 @@ export default function Category() {
             </div>
           ))}
         </sidebar>
+        <header>{cat}</header>
       </div>
     </>
   );
