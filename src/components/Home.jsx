@@ -57,8 +57,9 @@ export const Home = () => {
                 </h1>
                 <span className="items-end flex">{rating.rate}</span>
                 <p>{category}</p>
+                <p className="font-medium">${Math.round(price)}</p>
               </div>
-              <div className="mt-3 flex items-center gap-12">
+              <div className="mt-1 p-3 flex items-center gap-12">
                 <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 focus:bg-slate-800  hover:text-white focus:ease-in-out cursor-pointer focus:scale-105">
                   Buy now
                 </button>

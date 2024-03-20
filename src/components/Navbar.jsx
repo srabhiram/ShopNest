@@ -2,6 +2,11 @@ import { FaShopify, FaBars } from "react-icons/fa";
 import { auth } from "../Authentication/Firebase";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { FaCaretDown } from "react-icons/fa";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { Button } from "@radix-ui/themes";
+
+import CartPreview from "./CartPreview";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-50 flex w-full justify-between bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
+      <div className="z-50 flex w-full justify-around bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
         <div
           id="icon"
           className="p-2 flex items-center gap-2 max-lg-text-2xl cursor-pointer"
@@ -48,22 +53,36 @@ const Navbar = () => {
           <li>Other</li>
         </ul>
 
-        <div className="flex mx-2">
-          <button
-            onClick={() => {
-              signout();
-            }}
-            className="bg-black px-3 py-2 m-2 rounded-lg text-white ease-in-out hover:scale-110"
-          >
-            Hii! {username}
-          </button>
+        <div className="flex gap-6 ">
+          <CartPreview />
+          <DropdownMenu.Root className=" w-full">
+            <DropdownMenu.Trigger>
+              <Button variant="soft">
+                Hii! {username}
+                <FaCaretDown />
+              </Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content className="bg-white p-4 rounded-md border cursor-default shadow-md">
+              <DropdownMenu.Item className="hover:bg-gray-500 hover:text-white px-2.5 text-sm py-1.5 rounded-md">
+                Your Profile
+              </DropdownMenu.Item>
+              <DropdownMenu.Item
+                className="hover:bg-red-500 hover:text-white px-2.5 text-sm py-1.5 rounded-md"
+                onClick={() => {
+                  signout();
+                }}
+              >
+                Signout
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
       </div>
 
       {isOpen && (
         <div
           className="fixed top-15 left-0 w-full h-screen
-           bg-slate-900/10 backdrop-blur-sm"
+           bg-slate-900/10 backdrop-blur-sm z-50"
           onClick={() => setIsOpen(false)}
         >
           <div
