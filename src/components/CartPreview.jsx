@@ -12,7 +12,7 @@ export default function CartPreview() {
   // Function to create a new array with unique items and counts
   const getUniqueCartItems = () => {
     const uniqueCartItems = [];
-    cartData.forEach((item) => {
+    cartData?.forEach((item) => {
       const existingItem = uniqueCartItems.find(
         (cartItem) => cartItem.id === item.id
       );
@@ -28,7 +28,7 @@ export default function CartPreview() {
 
   const TotalAmount = () => {
     let amout = 0;
-    for (let i = 0; i < cartData.length; i++) {
+    for (let i = 0; i < cartData?.length; i++) {
       amout += cartData[i].price;
     }
 
