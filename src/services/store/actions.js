@@ -59,10 +59,10 @@ export const fetchCategory = (category) => async (dispatch) => {
   }
 };
 
-export const addtocart = (id, title, image, rating, price) => async (dispatch, getState) => {
+export const addtocart = (id, title, image, rating, price,category) => async (dispatch, getState) => {
   try {
     // Create the new cart item
-    const newItem = { id, title, image, rating, price };
+    const newItem = { id, title, image, rating, price,category };
 
     // Get the current cart data from the state
     const currentCartData = getState().cartData;

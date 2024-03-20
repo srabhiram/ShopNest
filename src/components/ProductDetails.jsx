@@ -10,9 +10,9 @@ export const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const productinfo = useSelector((state) => state?.singleProduct);
-  const { title, id, image, description, price, rating } = productinfo || [];
-  const handleCart = (id, title, image, rating, price) => {
-    dispatch(addtocart(id, title, image, rating, price));
+  const { title, id, image, description, price, rating,category } = productinfo || [];
+  const handleCart = (id, title, image, rating, price, category) => {
+    dispatch(addtocart(id, title, image, rating, price,category));
     navigate("/cart");
   };
   return (
@@ -41,7 +41,7 @@ export const ProductDetails = () => {
                     <button
                       className="flex max-sm:w-full max-sm:text-xl max-sm:mt-1 justify-center items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white"
                       onClick={() => {
-                        handleCart(id, title, image, rating, price);
+                        handleCart(id, title, image, rating, price,category);
                       }}
                     >
                       Add to cart

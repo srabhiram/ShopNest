@@ -23,8 +23,8 @@ export const Home = () => {
     dispatch(fetchCategory(category));
     navigate("/product");
   };
-  const handleCart = (id, title, image, rating, price) => {
-    dispatch(addtocart(id, title, image, rating, price));
+  const handleCart = (id, title, image, rating, price, category) => {
+    dispatch(addtocart(id, title, image, rating, price, category));
   };
 
   return (
@@ -33,7 +33,7 @@ export const Home = () => {
       <div className="grid md:grid-cols-4 w-full  align-baseline gap-6 max-lg-m-12 p-4 bg-gray-50">
         {products?.map(({ title, id, image, rating, category, price }) => (
           <div
-            className="cursor-default transform transition-all duration-500 hover:scale-105 border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center "
+            className="cursor-default transform transition-all duration-500 hover:scale-100 border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center "
             key={id}
           >
             <div className="p-2 items-center justify-center flex ">
@@ -66,7 +66,9 @@ export const Home = () => {
               </button>
               <button
                 className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer hover:bg-slate-800  hover:text-white hover:ease-in-out hover:scale-90 "
-                onClick={() => handleCart(id, title, image, rating, price)}
+                onClick={() =>
+                  handleCart(id, title, image, rating, price, category)
+                }
               >
                 Add to cart
                 <FaCartPlus />

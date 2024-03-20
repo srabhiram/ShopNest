@@ -48,9 +48,30 @@ const Navbar = () => {
             isOpen ? "hidden" : "flex"
           } max-sm:hidden gap-4 items-center`}
         >
-          <li>Home</li>
-          <li>Products</li>
-          <li>Other</li>
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/categories"
+            className={({ isActive }) =>
+            isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+          }
+          >
+            Categories
+          </NavLink>
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+            }
+          >
+            Home
+          </NavLink>
         </ul>
 
         <div className="flex gap-6 ">
@@ -59,7 +80,7 @@ const Navbar = () => {
             <DropdownMenu.Trigger>
               <Button variant="soft">
                 Hii! {username}
-                <FaCaretDown  />
+                <FaCaretDown />
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="bg-white p-4 rounded-md border cursor-default shadow-md">
