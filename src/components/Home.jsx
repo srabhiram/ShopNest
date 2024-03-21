@@ -6,7 +6,6 @@ import {
   fetchSingleProduct,
   addtocart,
 } from "../services/store/actions";
-import Navbar from "./Navbar";
 import { FaCartPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 

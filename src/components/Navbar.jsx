@@ -51,26 +51,32 @@ const Navbar = () => {
           <NavLink
             to="/home"
             className={({ isActive }) =>
-              isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+              isActive
+                ? "border-b-2 py-1 border-black"
+                : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
           >
             Home
           </NavLink>
           <NavLink
-            to="/categories"
+            to="/category"
             className={({ isActive }) =>
-            isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
-          }
+              isActive
+                ? "border-b-2 py-1 border-black"
+                : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+            }
           >
             Categories
           </NavLink>
           <NavLink
-            to="/home"
+            to="/about"
             className={({ isActive }) =>
-              isActive ? "border-b-2 py-1 border-black" : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+              isActive
+                ? "border-b-2 py-1 border-black"
+                : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
           >
-            Home
+            About
           </NavLink>
         </ul>
 
