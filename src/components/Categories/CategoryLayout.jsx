@@ -1,17 +1,18 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllProducts,
   fetchCategory,
   fetchSingleProduct,
   addtocart,
-} from "../services/store/actions";
+} from "../../services/store/actions";
 import { FaCartPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export const CategoryLayout = ({ products, selectedCategory }) => {
+export const CategoryLayout = () => {
+  const products = useSelector((state) => state.filterProducts);
   const selectedProduct = products || [];
-
+  console.log(products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -48,7 +48,13 @@ const CartDetails = () => {
     <>
       <Navbar />
       <header className=" h-screen m-3">
-        <p className={cartData.length<1 ? "hidden" : "px-3 font-semibold text-2xl"}>Shopping Cart</p>
+        <p
+          className={
+            cartData.length < 1 ? "hidden" : "px-3 font-semibold text-2xl"
+          }
+        >
+          Shopping Cart
+        </p>
         <section className="grid  md:grid-cols-2 sm:grid-cols-1  bg-white">
           <div>
             {cartData.length > 0
@@ -73,16 +79,16 @@ const CartDetails = () => {
                             <span className="text-xs opacity-90">x{count}</span>
                           </p>
                         </div>
-                        <div className=" flex justify- gap-2 items-center p-2 ">
+                        <div className=" flex justify- gap-2 items-center  ">
                           <button
-                            className="bg-white border rounded-xl px-4 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
+                            className="bg-white border rounded-xl px-3 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
                             onClick={() => handleRemoveFromCart(id)}
                           >
                             -
                           </button>
                           <p className="font-semibold">{count}</p>
                           <button
-                            className="bg-white border rounded-xl px-4 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
+                            className="bg-white border rounded-xl px-3 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
                             onClick={() =>
                               handleAddToCart(
                                 id,
@@ -104,7 +110,7 @@ const CartDetails = () => {
               : ""}
           </div>{" "}
           {cartData?.length > 0 && (
-            <div className="md:w-2/6 max-sm:m-4 sm:px-  bg-gray-50 p-4 shadow-md flex flex-col gap-3 md:fixed md:right-24 ">
+            <div className="md:w-2/6 max-sm:m-4 sm:px-2  bg-gray-50 p-4 shadow-md flex flex-col gap-3 md:fixed md:right-24 ">
               <p className="text-xl">Order Summary</p>
               <div className="border-b py-1 text-gray-500 flex justify-between items-center">
                 <p>Subtotal</p>

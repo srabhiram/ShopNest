@@ -7,6 +7,7 @@ const initialState = {
   SelectedCartData: null,
   updatedCartData: null,
   currentCartData: null,
+  filterProducts: null,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -68,6 +69,11 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+      case "FILTER_PRODUCTS":
+        return {
+        ...state,
+          filterProducts: action.payload,
+        };
     default:
       return state;
   }

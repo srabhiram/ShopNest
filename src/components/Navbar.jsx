@@ -7,6 +7,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Button } from "@radix-ui/themes";
 
 import CartPreview from "./CartPreview";
+import { CatMob } from "./Categories/CategoryMob";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-50 flex w-full justify-around bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
+      <div className="z-50 flex w-full max-sm:justify-between px-1 md:justify-around bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
         <div
           id="icon"
           className="p-2 flex items-center gap-2 max-lg-text-2xl cursor-pointer"
@@ -117,12 +118,22 @@ const Navbar = () => {
             className="flex flex-col items-start space-y-8  h-screen w-2/3 bg-white overflow-y-auto"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the sidebar itself
           >
-            <ul className="mt-8 ml-4">
+            <ul className="mt-2 px-4   flex flex-col justify-center w-full">
               {/* Insert your sidebar items here */}
-              <li>Home</li>
-              <li>Products</li>
-              <li>Other</li>
-              <li>More</li>
+              <NavLink to="/home" className=" border-b  py-3  w-full">
+                Home
+              </NavLink>
+
+              <NavLink to="" className=" border-b  py-3  w-full">
+                <CatMob setOpen={setIsOpen} />
+              </NavLink>
+
+              <NavLink to="" className=" border-b  py-3  w-full">
+                Your Account
+              </NavLink>
+              <NavLink to="" className=" border-b  py-3  w-full">
+                About
+              </NavLink>
               {/* Add more items as needed */}
             </ul>
           </div>

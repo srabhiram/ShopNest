@@ -59,33 +59,34 @@ export const fetchCategory = (category) => async (dispatch) => {
   }
 };
 
-export const addtocart = (id, title, image, rating, price,category) => async (dispatch, getState) => {
-  try {
-    // Create the new cart item
-    const newItem = { id, title, image, rating, price,category };
+export const addtocart =
+  (id, title, image, rating, price, category) => async (dispatch, getState) => {
+    try {
+      // Create the new cart item
+      const newItem = { id, title, image, rating, price, category };
 
-    // Get the current cart data from the state
-    const currentCartData = getState().cartData;
+      // Get the current cart data from the state
+      const currentCartData = getState().cartData;
 
-    // Merge the new item with the existing cart data
-    const updatedCartData = [...(currentCartData || []), newItem];
+      // Merge the new item with the existing cart data
+      const updatedCartData = [...(currentCartData || []), newItem];
 
-    // Dispatch the updated cart data to the store
-    dispatch({
-      type: "ADD_TO_CART_SUCCESS",
-      payload: updatedCartData,
-    });
+      // Dispatch the updated cart data to the store
+      dispatch({
+        type: "ADD_TO_CART_SUCCESS",
+        payload: updatedCartData,
+      });
 
-    // Update cart data in Firestore
-    const userId = getState().auth.userId;
-    await updateCartData(userId, updatedCartData);
-  } catch (error) {
-    dispatch({
-      type: "ADD_TO_CART_FAILURE",
-      payload: error.message,
-    });
-  }
-};
+      // Update cart data in Firestore
+      const userId = getState().auth.userId;
+      await updateCartData(userId, updatedCartData);
+    } catch (error) {
+      dispatch({
+        type: "ADD_TO_CART_FAILURE",
+        payload: error.message,
+      });
+    }
+  };
 
 export const removeCart = (id) => async (dispatch, getState) => {
   try {
@@ -116,5 +117,11 @@ export const removeCart = (id) => async (dispatch, getState) => {
       type: "REMOVE_CART_FAILURE",
       payload: error.message,
     });
+  }
+};
+export const filterProducts = (filteredProducts) => {
+  return {
+    type: "FILTER_PRODUCTS",
+    payload:filteredProducts
   }
 };

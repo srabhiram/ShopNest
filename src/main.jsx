@@ -7,9 +7,9 @@ import { Provider } from "react-redux";
 import store from "./services/store/store.js";
 import { Home } from "./components/Home.jsx";
 import Routes from "./Routes.jsx";
-import Category from "./components/Category.jsx";
+import Category from "./components/Categories/Category.jsx";
 import App from "./App.jsx";
-import { CategoryLayout } from "./components/CategoryLayout.jsx";
+import { CategoryLayout } from "./components/Categories/CategoryLayout.jsx";
 import { ProductDetails } from "./components/ProductDetails.jsx";
 import CartDetails from "./components/CartDetails.jsx";
 
@@ -59,9 +59,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-        element: <CartDetails />,
-        exact: true,
-  }
+    element: <CartDetails />,
+    exact: true,
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
