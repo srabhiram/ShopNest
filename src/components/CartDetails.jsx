@@ -12,19 +12,19 @@ const CartDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
-  const [user, setUser] = useState(null);
   useEffect(() => {
-    setTimeout(() => {
-      setLoader(false);
-    }, 1500);
+    const isUser = auth?.currentUser?.displayName;
     const userExist = () => {
-      setUser(auth.currentUser?.displayName);
-      if (user === null) {
+      if (isUser === undefined) {
         navigate("/");
       }
     };
     userExist();
-  }, [user, navigate]);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1500);
+   
+  });
 
   const handleAddToCart = (id, title, image, rating, price, category) => {
     dispatch(addtocart(id, title, image, rating, price, category));

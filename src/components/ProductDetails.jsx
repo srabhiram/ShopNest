@@ -13,19 +13,19 @@ export const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
-  const [user,setUser] = useState(null);
   useEffect(() => {
+    const isUser = auth?.currentUser?.displayName;
+    const userExist = () => {
+      if (isUser === undefined) {
+        navigate("/");
+      }
+    };
+    userExist();
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-    const userExist = ()=>{
-      setUser(auth.currentUser?.displayName);
-      if(user===null){
-        navigate("/");
-      }
-    }
-    userExist();
-  }, [user,navigate]);
+  
+  });
 
   const productinfo = useSelector((state) => state?.singleProduct);
   const { title, id, image, description, price, rating, category } =

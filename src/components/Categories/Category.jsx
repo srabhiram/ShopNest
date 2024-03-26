@@ -14,13 +14,14 @@ export default function Category() {
   const products = useSelector((state) => state?.allProducts?.products) || [];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loader, setLoader] = useState(true);
-  const [user, setUser] = useState(null);
   const userExist = () => {
-    setUser(auth.currentUser?.displayName);
-    if (user === null) {
-      navigate("/home");
-    }
-  };
+    const isUser = auth?.currentUser?.displayName;
+    const userExist = () => {
+      if (isUser === undefined) {
+        navigate("/");
+      }
+    };
+    userExist();}
   useEffect(() => {
     userExist();
     setTimeout(() => {

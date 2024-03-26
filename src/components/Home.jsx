@@ -6,37 +6,54 @@ import {
   fetchSingleProduct,
   addtocart,
 } from "../services/store/actions";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { SklHome } from "./Skeleton/SklHome";
 import { auth } from "../Authentication/Firebase";
+import toast, { Toaster } from "react-hot-toast";
+import shoptoast from "../assets/shop-toast.gif";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const products = useSelector((state) => state?.allProducts?.products) || [];
   const [loadeer, setLoader] = useState(true);
-  const[user,setUser] = useState(null);
- 
+
   useEffect(() => {
-    const userExist = ()=>{
-      setUser(auth.currentUser?.displayName);
-      if(user===null){
+    const isUser = auth?.currentUser?.displayName;
+    const userExist = () => {
+      if (isUser === undefined) {
         navigate("/");
       }
-    }
+    };
     userExist();
     dispatch(fetchAllProducts());
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-  }, [dispatch,navigate,user]);
+  }, [dispatch, navigate]);
+  const toastSuccess = () => {
+    toast(
+      (t) => (
+        <span className="flex justify-center font-medium items-center gap-3">
+          <img src={shoptoast} alt="shoptoast" width={30} /> Succedfully added
+          to cart
+          <button onClick={() => toast.dismiss(t.id)}>
+            <FaTimes />
+          </button>
+        </span>
+      ),
+      { duration: 1300 }
+    );
+  };
+
   const ProductClick = (id, category) => {
     dispatch(fetchSingleProduct(id));
     dispatch(fetchCategory(category));
     navigate("/product");
   };
   const handleCart = (id, title, image, rating, price, category) => {
+    toastSuccess();
     dispatch(addtocart(id, title, image, rating, price, category));
   };
 
@@ -93,6 +110,7 @@ export const Home = () => {
           ))}
         </div>
       )}
+      <Toaster />
     </>
   );
 };
