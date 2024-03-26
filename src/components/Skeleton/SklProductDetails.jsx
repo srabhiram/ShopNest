@@ -31,7 +31,7 @@ export const SklProductDetails = () => {
                   <Skeleton />
                 </p>
                 <article>
-                  <Skeleton count={8} />
+                  <Skeleton count={4} />
                 </article>
               </div>
             </div>
