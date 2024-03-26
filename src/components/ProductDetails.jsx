@@ -6,16 +6,26 @@ import { addtocart } from "../services/store/actions";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { SklProductDetails } from "./Skeleton/SklProductDetails";
+import { auth } from "../Authentication/Firebase";
+
 
 export const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
+  const [user,setUser] = useState(null);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-  }, []);
+    const userExist = ()=>{
+      setUser(auth.currentUser?.displayName);
+      if(user===null){
+        navigate("/");
+      }
+    }
+    userExist();
+  }, [user,navigate]);
 
   const productinfo = useSelector((state) => state?.singleProduct);
   const { title, id, image, description, price, rating, category } =

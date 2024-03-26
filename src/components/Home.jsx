@@ -9,19 +9,28 @@ import {
 import { FaCartPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { SklHome } from "./Skeleton/SklHome";
+import { auth } from "../Authentication/Firebase";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const products = useSelector((state) => state?.allProducts?.products) || [];
   const [loadeer, setLoader] = useState(true);
-
+  const[user,setUser] = useState(null);
+ 
   useEffect(() => {
+    const userExist = ()=>{
+      setUser(auth.currentUser?.displayName);
+      if(user===null){
+        navigate("/");
+      }
+    }
+    userExist();
     dispatch(fetchAllProducts());
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-  }, [dispatch, ]);
+  }, [dispatch,navigate,user]);
   const ProductClick = (id, category) => {
     dispatch(fetchSingleProduct(id));
     dispatch(fetchCategory(category));

@@ -4,16 +4,27 @@ import { addtocart, removeCart } from "../services/store/actions";
 import { useEffect, useState } from "react";
 import Emptycart from "./Emptycart";
 import SklCartDetails from "./Skeleton/SklCardDetails";
+import { auth } from "../Authentication/Firebase";
+import { useNavigate } from "react-router-dom";
+
 const CartDetails = () => {
   const cartData = useSelector((state) => state?.cartData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
-
+  const [user, setUser] = useState(null);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-  });
+    const userExist = () => {
+      setUser(auth.currentUser?.displayName);
+      if (user === null) {
+        navigate("/");
+      }
+    };
+    userExist();
+  }, [user, navigate]);
 
   const handleAddToCart = (id, title, image, rating, price, category) => {
     dispatch(addtocart(id, title, image, rating, price, category));

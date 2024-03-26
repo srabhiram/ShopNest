@@ -5,17 +5,28 @@ import Navbar from "../Navbar";
 import { CategoryLayout } from "./CategoryLayout";
 import { filterProducts } from "../../services/store/actions";
 import { SklHome } from "../Skeleton/SklHome";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../Authentication/Firebase";
 
 export default function Category() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector((state) => state?.allProducts?.products) || [];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loader, setLoader] = useState(true);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
+  const userExist = () => {
+    setUser(auth.currentUser?.displayName);
+    if (user === null) {
+      navigate("/home");
+    }
+  };
   useEffect(() => {
+    userExist();
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-  }, []);
+  });
 
   // Extract all unique categories from products
   const categories = [...new Set(products.map((product) => product.category))];
