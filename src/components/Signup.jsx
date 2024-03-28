@@ -20,7 +20,7 @@ export const Signup = () => {
       setload(true);
       setTimeout(() => {
         setload(false);
-      }, 1000);
+      }, 1600);
     }
   };
 
