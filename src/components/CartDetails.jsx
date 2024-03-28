@@ -6,6 +6,7 @@ import Emptycart from "./Emptycart";
 import SklCartDetails from "./Skeleton/SklCardDetails";
 import { auth } from "../Authentication/Firebase";
 import { useNavigate } from "react-router-dom";
+import Rating from "./Rating";
 
 const CartDetails = () => {
   const cartData = useSelector((state) => state?.cartData);
@@ -23,7 +24,6 @@ const CartDetails = () => {
     setTimeout(() => {
       setLoader(false);
     }, 1500);
-   
   });
 
   const handleAddToCart = (id, title, image, rating, price, category) => {
@@ -100,6 +100,10 @@ const CartDetails = () => {
                             <div className="col-span-2 text-start space-y-1">
                               <p className=" font-medium text-sm w-full">
                                 {title}
+                              </p>
+                              <p className="flex gap-1 cursor-default">
+                                <Rating value={rating.rate} />{" "}
+                                <span>{rating.rate}</span>
                               </p>
                               <p className="capitalize text-sm">{category}</p>
                               <p className=" font-medium text-md ">

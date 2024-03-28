@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -12,8 +12,14 @@ import App from "./App.jsx";
 import { CategoryLayout } from "./components/Categories/CategoryLayout.jsx";
 import { ProductDetails } from "./components/ProductDetails.jsx";
 import CartDetails from "./components/CartDetails.jsx";
+import { Landingpage } from "./components/Landingpage.jsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/kk",
+    element: <Landingpage />,
+    exact: true,
+  },
   {
     path: "/",
     element: <App />,
@@ -22,7 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Routes />,
-    children: [{ path: "", element: <Home /> }],
+    children: [{ path: "", element: <Landingpage/>,children:[{path:"",element:<Home/>}]}],
     exact: true,
   },
   {
@@ -30,7 +36,7 @@ const router = createBrowserRouter([
     element: <Category />,
     children: [
       {
-        path: "",
+        path: "all",
         element: <Home />,
       },
       {

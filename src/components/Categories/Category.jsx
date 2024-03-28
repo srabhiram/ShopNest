@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Navbar";
-import { CategoryLayout } from "./CategoryLayout";
 import { filterProducts } from "../../services/store/actions";
 import { SklHome } from "../Skeleton/SklHome";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ export default function Category() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const products = useSelector((state) => state?.allProducts?.products) || [];
+  // eslint-disable-next-line no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loader, setLoader] = useState(true);
   const userExist = () => {
@@ -21,7 +21,8 @@ export default function Category() {
         navigate("/");
       }
     };
-    userExist();}
+    userExist();
+  };
   useEffect(() => {
     userExist();
     setTimeout(() => {
@@ -51,14 +52,10 @@ export default function Category() {
         <sidebar className="max-sm:hidden flex gap-3 place-content-center items-center   overflow-hidden  bg-white border-b ">
           <div className="hover:bg-gray-50 py-3 ">
             <NavLink
-              to=""
-              className={({ isActive }) =>
-                !isActive
-                  ? "font-semibold bg-gray-50 px-3 py-3"
-                  : "font-normal px-3"
-              }
+              to="/category/all"
+              className="font-normal px-3"
               exact
-              onClick={() => handleCategoryClick("All")}
+              
             >
               All Categories
             </NavLink>
@@ -86,7 +83,7 @@ export default function Category() {
         </sidebar>
       )}
       <div className="">
-        <CategoryLayout />
+        <Outlet />
       </div>
     </>
   );

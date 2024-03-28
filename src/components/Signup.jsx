@@ -1,7 +1,8 @@
 import { signin, signup } from "../Authentication/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../Authentication/Firebase";
+import bgdesign from "../assets/bg-design2.jpeg";
+import { Spinner } from "./Spinner";
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +11,18 @@ export const Signup = () => {
   const [isLogin, setLogin] = useState(true);
   const [error, setError] = useState("");
   const [name, setNAme] = useState("");
-  console.log(name);
-  console.log(auth.currentUser);
 
+  const [load, setload] = useState(false);
   const navigate = useNavigate();
+
+  const handlesignin = () => {
+    if (email && password && isLogin) {
+      setload(true);
+      setTimeout(() => {
+        setload(false);
+      }, 1000);
+    }
+  };
 
   const isValidPassword = (password) => {
     const passwordRegex =
@@ -23,6 +32,7 @@ export const Signup = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    handlesignin();
 
     try {
       setError(""); // Clear any previous errors
@@ -61,83 +71,98 @@ export const Signup = () => {
   return (
     <>
       <h2>{isLogin ? "" : ""}</h2>
-      <div className="bg-black/70 flex items-center h-screen justify-center">
-        <div className=" bg-white  grid grid-cols-1  rounded-xl shadow-2xl gap-3 items-start w-[23rem] h-max border p-7">
-          <div className="">
-            <form onSubmit={handlesubmit} className="">
-              <div>
+      <div className="bg-frgray h-screen">
+        <div className="relative h-screen max-sm:hidden  max-md:hidden">
+          <img src={bgdesign} alt="" className=" h-full w-full " />
+        </div>
+        <div className=" max-sm:bg-togray max-md:bg-frgray max-sm:h-screen md:absolute md:right-1/4 md:top-[25%] flex items-center justify-center">
+          <div className=" bg-white/30   grid grid-cols-1  rounded-xl shadow-2xl gap-2 items-start w-[23rem]   p-7">
+            <div className="">
+              <form onSubmit={handlesubmit} className="">
+                <div>
+                  {!isLogin && (
+                    <>
+                      <label htmlFor="name" className="block px-1 w-full ">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        className="border w-full border-gray-600 p-3"
+                        placeholder="Full Name"
+                        value={name}
+                        onChange={(e) => setNAme(e.target.value)}
+                        required
+                      />
+                    </>
+                  )}
+                  <label htmlFor="EMail" className="block px-1 w-full ">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    className="border w-full border-gray-600 p-3"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="EMail" className="block px-1 w-full ">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="border w-full border-gray-600 p-3 "
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
                 {!isLogin && (
                   <>
-                    <label htmlFor="name" className="block p-1 w-full my-1">
-                      Full Name
+                    <label htmlFor="EMail" className="block px-1 w-full">
+                      Confirm Password
                     </label>
                     <input
-                      type="text"
-                      name="name"
+                      type="password"
+                      placeholder="Confirm Password"
                       className="border w-full border-gray-600 p-3"
-                      placeholder="Full Name"
-                      value={name}
-                      onChange={(e) => setNAme(e.target.value)}
+                      value={confirmPassword}
+                      onChange={(e) => setconfirmPassword(e.target.value)}
                       required
                     />
                   </>
                 )}
-                <label htmlFor="EMail" className="block p-1 w-full my-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="border w-full border-gray-600 p-3"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="EMail" className="block p-1 w-full mt-2">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="border w-full border-gray-600 p-3 mb-3"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {!isLogin && (
-                <>
-                  <label htmlFor="EMail" className="block p-1 mt-2 w-full">
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    className="border w-full border-gray-600 p-3 mb-3"
-                    value={confirmPassword}
-                    onChange={(e) => setconfirmPassword(e.target.value)}
-                    required
-                  />
-                </>
-              )}
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              <button
-                type="submit"
-                className="bg-black px-3 py-2 mb-2 text-white rounded-md"
-              >
-                {isLogin ? "Login" : "Sign Up"}
-              </button>
-            </form>
-            <p>
-              {isLogin
-                ? "Don't have an account? "
-                : "Already have an account? "}
-              <button onClick={() => setLogin(!isLogin)}>
-                {isLogin ? "Sign Up" : "Login"}
-              </button>
-            </p>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <button
+                  type="submit"
+                  className={
+                    load
+                      ? "bg-black/40  text-white mt-2 ml-1 px-3 py-2 rounded-md active:scale-95"
+                      : "bg-black text-white px-3 mt-2 ml-1 py-2 rounded-md hover:bg-black hover:transition-all hover:ease-in-out hover:duration-150 active:scale-95 active:duration-300 active:bg-black/30 "
+                  }
+                  disabled={load}
+                 
+                >
+                  {" "}
+                  <div className="flex gap-2">
+                    <Spinner load={load} />
+                    {isLogin ? "Signin" : "Sign Up"}
+                  </div>
+                </button>
+              </form>
+              <p>
+                {isLogin
+                  ? "Don't have an account? "
+                  : "Already have an account? "}
+                <button onClick={() => setLogin(!isLogin)}>
+                  {isLogin ? "Sign Up" : "Login"}
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>

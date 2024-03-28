@@ -12,6 +12,7 @@ import { SklHome } from "./Skeleton/SklHome";
 import { auth } from "../Authentication/Firebase";
 import toast, { Toaster } from "react-hot-toast";
 import shoptoast from "../assets/shop-toast.gif";
+import Rating from "./Rating";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -62,10 +63,10 @@ export const Home = () => {
       {loadeer ? (
         <SklHome />
       ) : (
-        <div className="grid md:grid-cols-4 w-full  align-baseline gap-6 max-lg-m-12 p-4 bg-gray-50">
+        <div className="grid md:grid-cols-4 w-full  align-baseline gap-6   max-lg-m-12 p-8 bg-white">
           {products?.map(({ title, id, image, rating, category, price }) => (
             <div
-              className="cursor-default transform transition-all duration-500 hover:scale-100 border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center "
+              className="cursor-default transform transition-all duration-500 hover:scale-100  border-2 w-full  bg-white  border-gray-100 shadow-sm p-3 mx-auto rounded-md grid items-center "
               key={id}
             >
               <div className="p-2 items-center justify-center flex ">
@@ -88,7 +89,9 @@ export const Home = () => {
                 >
                   {title}
                 </h1>
-                <span className="items-end flex">{rating.rate}</span>
+                <p className="flex gap-1 cursor-default">
+                  <Rating value={rating.rate} /> <span>{rating.rate}</span>
+                </p>
                 <p>{category}</p>
                 <p className="font-medium">${Math.round(price)}</p>
               </div>

@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-50 flex w-full max-sm:justify-between px-1 md:justify-around bg-white/70 backdrop-blur-sm border rounded-sm items-center sticky top-0">
+      <div className="z-50 flex w-full max-sm:justify-between px-1 md:justify-around bg-sky-50/70 backdrop-blur-lg border rounded-sm items-center sticky top-0">
         <div
           id="icon"
           className="p-2 flex items-center gap-2 max-lg-text-2xl cursor-pointer"
@@ -52,17 +52,17 @@ const Navbar = () => {
             to="/home"
             className={({ isActive }) =>
               isActive
-                ? "border-b-2 py-1 border-black"
+                ? "border-b-2 py-1 border-black font-medium"
                 : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
           >
             Home
           </NavLink>
           <NavLink
-            to="/category"
+            to="/category/all"
             className={({ isActive }) =>
               isActive
-                ? "border-b-2 py-1 border-black"
+                ? "border-b-2 py-1 border-black font-medium"
                 : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
           >
@@ -72,7 +72,7 @@ const Navbar = () => {
             to="/about"
             className={({ isActive }) =>
               isActive
-                ? "border-b-2 py-1 border-black"
+                ? "border-b-2 py-1 border-black font-medium"
                 : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
           >
@@ -157,10 +157,13 @@ const Navbar = () => {
               <NavLink to="" className=" border-b  py-3  w-full">
                 About
               </NavLink>
-              <NavLink  className=" border-b  py-3  w-full" onClick={() => {
-                    signout();
-                  }}>
-               Signout
+              <NavLink
+                className=" border-b  py-3  w-full"
+                onClick={() => {
+                  signout();
+                }}
+              >
+                Signout
               </NavLink>
               {/* Add more items as needed */}
             </ul>

@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
+import Rating from "./Rating";
 
 export default function CartPreview() {
   const cartData = useSelector((state) => state?.cartData);
@@ -62,13 +63,17 @@ export default function CartPreview() {
           >
             <div className="flex flex-col">
               {cartData?.length > 0 ? (
-                preview.map(({ title, id, image, price, count }) => (
+                preview.map(({ title, id, image, price, count, rating }) => (
                   <div key={id} className="border-b">
                     <div className="flex gap-2 justify-center  items-center  p-2  h-full w-full">
                       <img src={image} alt={title} width={40} />
 
                       <p className="font-medium text-md w-full text-wrap">
                         {title}
+                        <p className="flex gap-1 cursor-default">
+                          <Rating value={rating.rate} />{" "}
+                          <span>{rating.rate}</span>
+                        </p>
                       </p>
                     </div>
                     <div className="flex items-center justify-between p-2 gap-4">
