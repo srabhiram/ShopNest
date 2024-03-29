@@ -31,11 +31,12 @@ export const ProductDetails = ({ loading }) => {
     productinfo || [];
   const handleCart = (id, title, image, rating, price, category) => {
     dispatch(addtocart(id, title, image, rating, price, category));
+
     navigate("/cart");
   };
   return (
     <Fragment>
-      <Navbar  />
+      <Navbar />
       {loader ? (
         <SklProductDetails />
       ) : (
@@ -58,12 +59,12 @@ export const ProductDetails = ({ loading }) => {
                       <Rating value={rating.rate} /> <span>{rating.rate}</span>
                     </p>
                     <p className=" font-medium text-3xl">$ {price}</p>
-                    <div className="mt-6 text-lg   lg:flex lg:items-center max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center  sm:w-full gap-4">
-                      <button className="border  max-sm:text-xl  max-sm:w-full border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 focus:bg-slate-800  hover:text-white focus:ease-in-out cursor-pointer focus:scale-105">
+                    <div className="mt-6 text-lg   flex items-center sm:w-full gap-4">
+                      <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-800 active:bg-black  hover:text-white active:ease-in-out cursor-pointer active:scale-105 duration-150 transition-all">
                         Buy now
                       </button>
                       <button
-                        className="flex max-sm:w-full max-sm:text-xl max-sm:mt-1 justify-center items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white"
+                        className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer active:bg-black hover:bg-slate-800  hover:text-white hover:ease-in-out active:ease-in-out active:scale-105 duration-150 transition-all "
                         onClick={() => {
                           handleCart(id, title, image, rating, price, category);
                         }}
@@ -73,7 +74,7 @@ export const ProductDetails = ({ loading }) => {
                       </button>
                     </div>
                     <div className=" text-slate-600">
-                      <p className="font font-medium text-lg mt-4">
+                      <p className="font font-medium text-slate-900 text-xl mt-4">
                         About the product:
                       </p>
                       <article>{description}</article>

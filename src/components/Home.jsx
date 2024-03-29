@@ -96,11 +96,11 @@ export const Home = () => {
                 <p className="font-medium">${Math.round(price)}</p>
               </div>
               <div className="mt-1 p-3 flex items-center gap-12">
-                <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 focus:bg-slate-800  hover:text-white focus:ease-in-out cursor-pointer focus:scale-105">
+                <button className="border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-800 active:bg-black  hover:text-white active:ease-in-out cursor-pointer active:scale-105 duration-150 transition-all">
                   Buy now
                 </button>
                 <button
-                  className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer hover:bg-slate-800  hover:text-white hover:ease-in-out hover:scale-90 "
+                  className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer active:bg-black hover:bg-slate-800  hover:text-white hover:ease-in-out active:ease-in-out active:scale-105 duration-150 transition-all "
                   onClick={() =>
                     handleCart(id, title, image, rating, price, category)
                   }

@@ -38,7 +38,7 @@ export const SklProductDetails = () => {
           </div>
         </main>
 
-        <SklSimilarCart />
+        
       </main>
     </>
   );

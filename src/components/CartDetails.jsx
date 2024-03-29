@@ -163,7 +163,7 @@ const CartDetails = () => {
                     <p>${Total}</p>
                   </div>
                   <div className="flex items-center justify-center">
-                    <button className="bg-black px-3 py-2 w-2/4 text-center  text-white rounded-md text-xl tracking-wider font-medium">
+                    <button className="bg-black active:bg-black/60 ease-in-out duration-200 transition-all hover:bg-black/80 px-3 py-2 w-2/4 text-center  text-white rounded-md text-xl tracking-wider font-medium">
                       Checkout
                     </button>
                   </div>

@@ -81,7 +81,7 @@ const SimilarCart = () => {
         </div>
       )}
       <section className="w-full md:p-2 border-t bg-white md:w-5/6 max-sm:w-full">
-        <p>Similar Products</p>
+        <p className="font-bold text-xl px-2 pt-3 ">Similar Products</p>
         <div className="flex py-3 w-full  max-sm:grid max-sm:grid-cols-2 content-center items-center gap-0 snap-x  justify-center ">
           {simialarCat.map(({ id, title, image, price, rating, category }) => (
             <>
@@ -102,7 +102,7 @@ const SimilarCart = () => {
                     <Rating value={rating.rate} /> <span>{rating.rate}</span>
                   </p>
                   <p>{category}</p>
-                  <p>${price}</p>
+                  <p className="font-medium">${price}</p>
                   <button
                     className="mb-2 max-sm:w-full max-sm:text-sm max-sm:mt-1 justify-center items-center  border border-gray-500 rounded-sm font-medium px-2 py-1 hover:bg-slate-600 cursor-pointer focus:bg-slate-800 hover:text-white focus:text-white"
                     onClick={() =>

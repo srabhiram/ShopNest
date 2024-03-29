@@ -18,7 +18,7 @@ export const Landingpage = () => {
     <SklLanding />
   ) : (
     <>
-      <div className=" max-sm:h-56 h-[36rem] cursor-default w-full pb-3 mt-1 mb-4 border-b">
+      <div className=" max-sm:h-56 h-[36rem] cursor-default w-full pb-3  mb-4 border-b">
         <Carousel slideInterval={1200} className="cursor-none">
           <div className="relative h-full w-full">
             <img src={crsl} alt="carousel1" className="h-full  w-full " />

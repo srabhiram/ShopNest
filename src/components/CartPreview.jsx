@@ -91,10 +91,12 @@ export default function CartPreview() {
                 </div>
               )}
               {
-                <div className={`${!cartData?.length > 0 ? "hidden" : ""}`}>
-                  <p>Total: {TotalAmount()}</p>
+                <div className={`${!cartData?.length > 0 ? "hidden" : "p-1"}`}>
+                  <p className="font-medium py-2">
+                    Total: <span className="font-normal">${TotalAmount()}</span>
+                  </p>
                   <button
-                    className="bg-black text-white px-2 py-2 rounded-md "
+                    className="active:bg-black/50 text-black hover:bg-black hover:text-white ease-in-out duration-150 transition-all border-2 border-black active:text-white px-2 py-2 rounded-md w-full "
                     onClick={() => {
                       navigate("/cart");
                     }}

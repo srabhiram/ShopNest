@@ -81,14 +81,14 @@ const Navbar = ({ scrollToAbout }) => {
       <div className="z-50 flex w-full max-sm:justify-between px-1 md:justify-around bg-sky-50/70 backdrop-blur-lg border rounded-sm items-center sticky top-0">
         <div
           id="icon"
-          className="p-2 flex items-center gap-2 max-lg-text-2xl cursor-pointer"
+          className="p-2 flex items-center gap-1 max-lg:text-2xl max-sm:text-[18px] cursor-pointer"
         >
           <FaBars
             className="lg:hidden space-x-2 cursor-pointer"
-            size={30}
+            size={28}
             onClick={() => setIsOpen(!isOpen)}
           />
-          <FaShopify size={44} />
+          <FaShopify size={40} />
           <p className="font-Madimi font-medium text-lg">
             <NavLink to="/home">ShopNest</NavLink>
           </p>
@@ -133,7 +133,7 @@ const Navbar = ({ scrollToAbout }) => {
           </NavLink>
         </ul>
 
-        <div className="flex gap-5 items-center justify-center border-white pr-2">
+        <div className="flex gap-1 items-center justify-center border-white pr-2">
           <div className="flex flex-col">
             <div className="relative">
               <input
@@ -142,12 +142,12 @@ const Navbar = ({ scrollToAbout }) => {
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search Products"
-                className="relative rounded-md w-48"
+                className="relative rounded-md max-lg:w-48 max-sm:w-36"
               />
 
               {searchQuery.trim() === "" && (
                 <IoSearch
-                  className="absolute top-3 right-3 fill-slate-400"
+                  className="absolute top-3 right-3 fill-slate-400 max-sm:hidden"
                   size={22}
                 />
               )}
