@@ -13,6 +13,7 @@ import { CategoryLayout } from "./components/Categories/CategoryLayout.jsx";
 import { ProductDetails } from "./components/ProductDetails.jsx";
 import CartDetails from "./components/CartDetails.jsx";
 import { Landingpage } from "./components/Landingpage.jsx";
+import { About } from "./components/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
     element: <CartDetails />,
     exact: true,
   },
+ 
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,12 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-export default{
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}", // ...
-  "node_modules/flowbite-react/lib/esm/**/*.js",],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}", // ...
+    "node_modules/flowbite-react/lib/esm/**/*.js",
+  ],
   theme: {
-    extend: {colors: {
+    extend: {
+      colors: {
         frgray: "#6993bb",
         togray: "#7399c0",
-      },},
+      },
+      fontFamily: {
+        Madimi: ["Madimi One, sans-serif"],
+      },
+    },
   },
-  plugins: [ require("flowbite/plugin"),],
+  plugins: [require("flowbite/plugin")],
 };

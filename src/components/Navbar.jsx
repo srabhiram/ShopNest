@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchSingleProduct, fetchCategory } from "../services/store/actions";
 
-const Navbar = () => {
+const Navbar = ({ scrollToAbout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -73,7 +73,7 @@ const Navbar = () => {
     dispatch(fetchSingleProduct(id));
     dispatch(fetchCategory(category));
     navigate("/product");
-    setSearchResults([])
+    setSearchResults([]);
   };
 
   return (
@@ -89,9 +89,9 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
           />
           <FaShopify size={44} />
-          <strong>
-            <NavLink to="/home">Shopify!</NavLink>!
-          </strong>
+          <p className="font-Madimi font-medium text-lg">
+            <NavLink to="/home">ShopNest</NavLink>
+          </p>
         </div>
 
         <ul
@@ -120,12 +120,14 @@ const Navbar = () => {
             Categories
           </NavLink>
           <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "border-b-2 py-1 border-black font-medium"
-                : " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
+            to="/l"
+            id="about"
+            className={
+              " py-1 border-black hover:border-b-2 hover:ease-in-out hover:duration-100 hover:transition-all active:border-b-2"
             }
+            onClick={() => {
+              scrollToAbout();
+            }}
           >
             About
           </NavLink>

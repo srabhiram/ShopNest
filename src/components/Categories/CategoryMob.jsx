@@ -9,7 +9,6 @@ export const CatMob = ({ setOpen }) => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state?.allProducts?.products) || [];
-  
 
   // Extract all unique categories from products
   const categories = [...new Set(products.map((product) => product.category))];
@@ -21,7 +20,7 @@ export const CatMob = ({ setOpen }) => {
       category === "All"
         ? products
         : products.filter((product) => product.category === category);
-   
+
     dispatch(filterProducts(filteredProducts));
     setOpen(false);
     setOpenIndex(null);
@@ -35,13 +34,13 @@ export const CatMob = ({ setOpen }) => {
     <>
       <div className="bg-white cursor-pointer w-full">
         <div className="capitalize w-full" onClick={handleAccordionClick}>
-          <div className=" text-sm">Products</div>
+          <div className=" tex">Products</div>
         </div>
       </div>
       {openIndex !== null && (
         <div>
           <NavLink
-            to={""}
+            to={"/category/all"}
             className="font-normal px-3 space-y-1  text-sm flex flex-col pt-3"
             onClick={() => handleCategoryClick("All")}
           >
