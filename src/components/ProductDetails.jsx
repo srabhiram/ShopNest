@@ -35,7 +35,7 @@ export const ProductDetails = ({ loading }) => {
   };
   return (
     <Fragment>
-      <Navbar />
+      <Navbar  />
       {loader ? (
         <SklProductDetails />
       ) : (

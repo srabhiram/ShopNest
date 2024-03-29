@@ -7,11 +7,18 @@ import { Button } from "@radix-ui/themes";
 import * as Avatar from "@radix-ui/react-avatar";
 import CartPreview from "./CartPreview";
 import { CatMob } from "./Categories/CategoryMob";
+import { IoSearch } from "react-icons/io5";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSingleProduct, fetchCategory } from "../services/store/actions";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const username = auth?.currentUser?.displayName;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const signout = () => {
     auth
@@ -23,6 +30,50 @@ const Navbar = () => {
       .catch((error) => {
         console.error("Error signing out:", error);
       });
+  };
+
+  // Function to fetch products from FakeStore API based on search query
+  const fetchProducts = async (query) => {
+    try {
+      const response = await fetch(`https://fakestoreapi.com/products`);
+      const data = await response.json();
+      const filteredProducts = data.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
+      return filteredProducts;
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      return [];
+    }
+  };
+
+  // Function to handle search input change
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+  };
+
+  useEffect(() => {
+    const search = async () => {
+      if (searchQuery.trim() !== "") {
+        const results = await fetchProducts(searchQuery);
+        setSearchResults(results);
+      } else {
+        setSearchResults([]);
+      }
+    };
+
+    // Delay search execution by 300ms after user stops typing
+    const timeoutId = setTimeout(search, 300);
+
+    // Clear timeout on component unmount or when searchQuery changes
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+  const ProductClick = (id, category) => {
+    dispatch(fetchSingleProduct(id));
+    dispatch(fetchCategory(category));
+    navigate("/product");
+    setSearchResults([])
   };
 
   return (
@@ -81,6 +132,57 @@ const Navbar = () => {
         </ul>
 
         <div className="flex gap-5 items-center justify-center border-white pr-2">
+          <div className="flex flex-col">
+            <div className="relative">
+              <input
+                type="search"
+                name="search"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Search Products"
+                className="relative rounded-md w-48"
+              />
+
+              {searchQuery.trim() === "" && (
+                <IoSearch
+                  className="absolute top-3 right-3 fill-slate-400"
+                  size={22}
+                />
+              )}
+            </div>
+            <div
+              className={
+                !searchResults.length > 0 || searchQuery.trim() === ""
+                  ? "hidden"
+                  : "bg-white absolute top-14 right-[12%] overflow-y-auto px-1 py-1 rounded-md border shadow-lg w-[20rem]  flex  text-sm max-sm:h-fit max-lg:h-fit"
+              }
+            >
+              {searchResults.length > 0 && (
+                <div className="mt-1 p-1 ">
+                  <ul>
+                    {searchResults.map(({ id, title, image, category }) => (
+                      <>
+                        <div className="flex items-center gap-1 my-3 w-[18rem]">
+                          <img
+                            src={image}
+                            alt={title}
+                            className="w-8 h-6 object-contain"
+                          />
+                          <li
+                            key={id}
+                            className="leading-6 font-medium truncate my-1 p-0 m-0 cursor-pointer  text-[16px]"
+                            onClick={() => ProductClick(id, category)}
+                          >
+                            {title}
+                          </li>
+                        </div>
+                      </>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
           <CartPreview />
           <div className="max-sm:hidden">
             <DropdownMenu.Root className=" w-full border-none border-white ">
@@ -121,7 +223,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
       {isOpen && (
         <div
           className="fixed top-15 left-0 w-full h-screen
