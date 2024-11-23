@@ -27,10 +27,11 @@ export const ProductDetails = ({ loading }) => {
   }, [navigate]);
 
   const productinfo = useSelector((state) => state?.singleProduct);
-  const { title, id, image, description, price, rating, category } =
+  const { title, _id, image, description, price, rating, category } =
     productinfo || [];
-  const handleCart = (id, title, image, rating, price, category) => {
-    dispatch(addtocart(id, title, image, rating, price, category));
+    console.log(_id)
+  const handleCart = (_id, title, image, rating, price, category) => {
+    dispatch(addtocart(_id, title, image, rating, price, category));
 
     navigate("/cart");
   };
@@ -43,8 +44,8 @@ export const ProductDetails = ({ loading }) => {
         <main className=" bg-gray-100 flex flex-col md:pt-3 max-sm:pt-1 items-center justify-center   ">
           {productinfo && (
             <>
-              <main key={id} className=" px-4 pt-2 bg-white md:w-5/6 pb-9 ">
-                <div className="grid md:grid-cols-2 items-center gap-0 w-4/5 ">
+              <main key={_id} className=" px-4 pt-2 bg-white md:w-5/6 pb-9 ">
+                <div className="gr_id md:gr_id-cols-2 items-center gap-0 w-4/5 ">
                   <div className="mx-lg:flex items-center m-5 border justify-center p-4 rounded-md  ">
                     <img
                       src={image}
@@ -66,7 +67,7 @@ export const ProductDetails = ({ loading }) => {
                       <button
                         className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer active:bg-black hover:bg-slate-800  hover:text-white hover:ease-in-out active:ease-in-out active:scale-105 duration-150 transition-all "
                         onClick={() => {
-                          handleCart(id, title, image, rating, price, category);
+                          handleCart(_id, title, image, rating, price, category);
                         }}
                       >
                         Add to cart

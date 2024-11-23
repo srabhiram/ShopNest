@@ -53,9 +53,13 @@ const router = createBrowserRouter([
         element: <CategoryLayout />,
       },
       {
-        path: "jewelery",
+        path: "kid's clothing",
         element: <CategoryLayout />,
       },
+      {
+        path: "home appliances",
+        element: <CategoryLayout />,
+      }
     ],
     exact: true,
   },

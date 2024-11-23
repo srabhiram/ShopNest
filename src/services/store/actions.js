@@ -3,7 +3,7 @@ import { updateCartData } from "../../Authentication/Firebase";
 
 export const fetchAllProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get("https://fakestoreapi.com/products");
+    const response = await axios.get(`${import.meta.env.VITE_SERVER_URI}/products`);
     const products = response.data;
 
     // Extracting product IDs
@@ -28,7 +28,7 @@ export const fetchAllProducts = () => async (dispatch) => {
 export const fetchSingleProduct = (id) => async (dispatch) => {
   try {
     const singleProduct = await axios.get(
-      `https://fakestoreapi.com/products/${id}`
+      `${import.meta.env.VITE_SERVER_URI}/products/${id}`
     );
     dispatch({
       type: "FETCH_SINGLE_PRODUCT_SUCCESS",
@@ -45,7 +45,7 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
 export const fetchCategory = (category) => async (dispatch) => {
   try {
     const singleCategory = await axios.get(
-      `https://fakestoreapi.com/products/category/${category}`
+      `${import.meta.env.VITE_SERVER_URI}/products/category/${category}`
     );
     dispatch({
       type: "FETCH_SINGLE_CATEGORY_SUCCESS",
@@ -94,7 +94,7 @@ export const removeCart = (id) => async (dispatch, getState) => {
     const currentCartData = getState().cartData;
 
     // Find the index of the item with the specified ID
-    const indexToRemove = currentCartData.findIndex((item) => item.id === id);
+    const indexToRemove = currentCartData.findIndex((item) => item._id === id);
 
     if (indexToRemove !== -1) {
       // Remove the item from the currentCartData array using splice

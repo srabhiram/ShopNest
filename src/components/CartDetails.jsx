@@ -26,8 +26,8 @@ const CartDetails = () => {
     }, 1500);
   });
 
-  const handleAddToCart = (id, title, image, rating, price, category) => {
-    dispatch(addtocart(id, title, image, rating, price, category));
+  const handleAddToCart = (_id, title, image, rating, price, category) => {
+    dispatch(addtocart(_id, title, image, rating, price, category));
   };
 
   const handleRemoveFromCart = (id) => {
@@ -79,14 +79,14 @@ const CartDetails = () => {
                   ? getUniqueCartItems().map(
                       ({
                         title,
-                        id,
+                        _id,
                         image,
                         rating,
                         price,
                         count,
                         category,
                       }) => (
-                        <div key={id} className="bg-white border-b rounded ">
+                        <div key={_id} className="bg-white border-b rounded ">
                           <div className="w-full grid grid-cols-4 justify-center  items-center  p-5  h-full ">
                             <div className="flex items-center  justify-center">
                               {" "}
@@ -116,7 +116,7 @@ const CartDetails = () => {
                             <div className=" flex justify- gap-2 items-center  ">
                               <button
                                 className="bg-white border rounded-xl px-3 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
-                                onClick={() => handleRemoveFromCart(id)}
+                                onClick={() => handleRemoveFromCart(_id)}
                               >
                                 -
                               </button>
@@ -125,7 +125,7 @@ const CartDetails = () => {
                                 className="bg-white border rounded-xl px-3 py-2 font-semibold text-md hover:bg-black hover:text-white hover:transition-all hover:ease-in-out hover:duration-100   text-black"
                                 onClick={() =>
                                   handleAddToCart(
-                                    id,
+                                    _id,
                                     title,
                                     image,
                                     rating,

@@ -63,8 +63,8 @@ export default function CartPreview() {
           >
             <div className="flex flex-col">
               {cartData?.length > 0 ? (
-                preview.map(({ title, id, image, price, count, rating }) => (
-                  <div key={id} className="border-b">
+                preview.map(({ title, _id, image, price, count, rating }) => (
+                  <div key={_id} className="border-b">
                     <div className="flex gap-2 justify-center  items-center  p-2  h-full w-full">
                       <img src={image} alt={title} width={40} />
 
