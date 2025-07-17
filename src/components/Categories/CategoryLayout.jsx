@@ -23,13 +23,13 @@ export const CategoryLayout = () => {
       setLoader(false);
     }, 1500);
   }, [dispatch]);
-  const ProductClick = (_id, category) => {
-    dispatch(fetchSingleProduct(_id));
+  const ProductClick = (id, category) => {
+    dispatch(fetchSingleProduct(id));
     dispatch(fetchCategory(category));
     navigate("/product");
   };
-  const handleCart = (_id, title, image, rating, price, category) => {
-    dispatch(addtocart(_id, title, image, rating, price, category));
+  const handleCart = (id, title, image, rating, price, category) => {
+    dispatch(addtocart(id, title, image, rating, price, category));
   };
 
   return (
@@ -39,10 +39,10 @@ export const CategoryLayout = () => {
       ) : (
         <div className="grid md:grid-cols-4 w-full  align-baseline gap-6 max-lg-m-12 p-4 bg-gray-50">
           {selectedProduct?.map(
-            ({ title, _id, image, rating, category, price }) => (
+            ({ title, id, image, rating, category, price }) => (
               <div
                 className="cursor-default transform transition-all duration-500 hover:scale-100 border w-full  bg-white  border-gray-100 shadow-sm p-6 mx-auto rounded-sm grid items-center "
-                key={_id}
+                key={id}
               >
                 <div className="p-2 items-center justify-center flex ">
                   <img
@@ -51,7 +51,7 @@ export const CategoryLayout = () => {
                     className="cursor-pointer"
                     width={95}
                     onClick={() => {
-                      ProductClick(_id, category);
+                      ProductClick(id, category);
                     }}
                   />
                 </div>
@@ -59,7 +59,7 @@ export const CategoryLayout = () => {
                   <h1
                     className="font-bold text-xl cursor-pointer text-slate-700"
                     onClick={() => {
-                      ProductClick(_id, category);
+                      ProductClick(id, category);
                     }}
                   >
                     {title}
@@ -75,7 +75,7 @@ export const CategoryLayout = () => {
                   <button
                     className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer hover:bg-slate-800  hover:text-white hover:ease-in-out hover:scale-90 "
                     onClick={() =>
-                      handleCart(_id, title, image, rating, price, category)
+                      handleCart(id, title, image, rating, price, category)
                     }
                   >
                     Add to cart

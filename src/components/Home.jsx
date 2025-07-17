@@ -47,14 +47,14 @@ export const Home = () => {
       { duration: 1300 }
     );
   };
-  const ProductClick = (_id, category) => {
-    dispatch(fetchSingleProduct(_id));
+  const ProductClick = (id, category) => {
+    dispatch(fetchSingleProduct(id));
     dispatch(fetchCategory(category));
     navigate("/product");
   };
-  const handleCart = (_id, title, image, rating, price, category) => {
+  const handleCart = (id, title, image, rating, price, category) => {
     toastSuccess();
-    dispatch(addtocart(_id, title, image, rating, price, category));
+    dispatch(addtocart(id, title, image, rating, price, category));
   };
 
   return (
@@ -63,10 +63,10 @@ export const Home = () => {
         <SklHome />
       ) : (
         <div className="grid md:grid-cols-4 w-full  align-baseline gap-6   max-lg-m-12 p-8 bg-white">
-          {products?.map(({ title, _id, image, rating, category, price }) => (
+          {products?.map(({ title, id, image, rating, category, price }) => (
             <div
               className="cursor-default transform transition-all duration-500 hover:scale-100  border-2 w-full  bg-white  border-gray-100 shadow-sm p-3 mx-auto rounded-md grid items-center "
-              key={_id}
+              key={id}
             >
               <div className="p-2 items-center justify-center flex ">
                 <img
@@ -75,7 +75,7 @@ export const Home = () => {
                   className="cursor-pointer"
                   width={95}
                   onClick={() => {
-                    ProductClick(_id, category);
+                    ProductClick(id, category);
                   }}
                 />
               </div>
@@ -83,7 +83,7 @@ export const Home = () => {
                 <h1
                   className="font-bold text-xl cursor-pointer text-slate-700"
                   onClick={() => {
-                    ProductClick(_id, category);
+                    ProductClick(id, category);
                   }}
                 >
                   {title}
@@ -101,7 +101,7 @@ export const Home = () => {
                 <button
                   className="flex items-center gap-2 border border-gray-500 rounded-sm font-medium px-2 py-1 cursor-pointer active:bg-black hover:bg-slate-800  hover:text-white hover:ease-in-out active:ease-in-out active:scale-105 duration-150 transition-all "
                   onClick={() =>
-                    handleCart(_id, title, image, rating, price, category)
+                    handleCart(id, title, image, rating, price, category)
                   }
                 >
                   Add to cart
